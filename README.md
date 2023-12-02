@@ -33,7 +33,7 @@ belongs_to :user
 | column             | Type        | Options 1   | Options 2  |
 | ------------------ | ----------  | ----------- | ---------- |
 | item_id            | references  | NOT NULL    | 外部キー    |
-| user_id            | references  | NOT NULL    | 外部キー    |
+| user_id            | references  | NOT NULL    | 外部キー     |
 
 ### Association
 belongs_user
