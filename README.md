@@ -1,24 +1,51 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users
+| colum              | Type        | Options 1   | Options 2  |
+| ------------------ | ----------  | ----------- | ---------- |
+| nickname           | string      | NOT NULL    |            |
+| encrypted_password | string      | NOT NULL    |            |
+| email              | string      | NOT NULL    | ユニーク制約 |
 
-Things you may want to cover:
+### Association
+belongs_to :user
+has_one :sending_info
 
-* Ruby version
 
-* System dependencies
+## items
+| column             | Type        | Options 1   | Options 2 |
+| ------------------ | ----------  | ----------- | --------- |
+| image              | text        | NOT NULL    |           |
+| item_name          | text        | NOT NULL    |           |
+| price              | integer     | NOT NULL    |           |
+| user_id            | references  | NOT NULL    | 外部キー   |
+| category           | text        | NOT NULL    |           |
+| condition          | text        | NOT NULL    |           |
+| shipping_fee       | text        | NOT NULL    |           |
+| ship_from          | text        | NOT NULL    |           |
+| shipping_date      | text        | NOT NULL    |           |
 
-* Configuration
+### Association
+belongs_to :user
 
-* Database creation
 
-* Database initialization
+## purchasing_infos
+| column             | Type        | Options 1   | Options 2  |
+| ------------------ | ----------  | ----------- | ---------- |
+| item_id            | references  | NOT NULL    | 外部キー    |
+| user_id            | references  | NOT NULL    | 外部キー    |
 
-* How to run the test suite
+### Association
+belongs_user
+has_one :sending_info
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## sending_infos
+| column             | Type        | Options 1   | Options 2  |
+| ------------------ | ----------  | ----------- | ---------- |
+| item_id            | references  | NOT NULL    | 外部キー    |
+| user_id            | references  | NOT NULL    | 外部キー    |
+| shipping_address   | text        | NOT NULL    |            |
 
-* ...
+### Association
+belongs_to :user
