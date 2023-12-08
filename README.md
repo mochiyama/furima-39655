@@ -1,51 +1,58 @@
 # README
 
 ## users
-| colum              | Type        | Options 1   | Options 2  |
-| ------------------ | ----------  | ----------- | ---------- |
-| nickname           | string      | NOT NULL    |            |
-| encrypted_password | string      | NOT NULL    |            |
-| email              | string      | NOT NULL    | ユニーク制約 |
+| colum              | Type        | Options                   |
+| ------------------ | ----------  | --------------------------|
+| nickname           | string      | null: false               |
+| encrypted_password | string      | null: false               |
+| email              | string      | null: false,  unique:true |
+| first_name         | string      | null: false               |
+| last_name          | string      | null: false               |
+| birth-day          | datetime    | null: false,              |
 
 ### Association
-belongs_to :user
-has_one :sending_info
+- has_many :items
 
 
 ## items
-| column             | Type        | Options 1   | Options 2 |
-| ------------------ | ----------  | ----------- | --------- |
-| image              | text        | NOT NULL    |           |
-| item_name          | text        | NOT NULL    |           |
-| price              | integer     | NOT NULL    |           |
-| user_id            | references  | NOT NULL    | 外部キー   |
-| category           | text        | NOT NULL    |           |
-| condition          | text        | NOT NULL    |           |
-| shipping_fee       | text        | NOT NULL    |           |
-| ship_from          | text        | NOT NULL    |           |
-| shipping_date      | text        | NOT NULL    |           |
+| column             | Type        | Options                         |
+| ------------------ | ----------  | ------------------------------- |
+| item_name          | text        | null: false                     |
+| price              | integer     | null: false                     |
+| user               | references  | null: false  foreign_key:true   |
+| category           | text        | null: false                     |
+| condition          | id          | null: false                     |
+| shipping_fee       | id          | null: false                     |
+| ship_from          | id          | null: false                     |
+| shipping_date      | id          | null: false                     |
 
 ### Association
-belongs_to :user
+- belongs_to :user
 
 
 ## purchasing_infos
-| column             | Type        | Options 1   | Options 2  |
-| ------------------ | ----------  | ----------- | ---------- |
-| item_id            | references  | NOT NULL    | 外部キー    |
-| user_id            | references  | NOT NULL    | 外部キー     |
+| column             | Type        | Options                         |
+| ------------------ | ----------  | ------------------------------- |
+| item               | references  | null: false  foreign_key:true   |
+| user               | references  | null: false  foreign_key:true   |
 
 ### Association
-belongs_user
-has_one :sending_info
+- belongs_user
+- has_one :sending_info
 
 
 ## sending_infos
-| column             | Type        | Options 1   | Options 2  |
-| ------------------ | ----------  | ----------- | ---------- |
-| item_id            | references  | NOT NULL    | 外部キー    |
-| user_id            | references  | NOT NULL    | 外部キー    |
-| shipping_address   | text        | NOT NULL    |            |
+| column             | Type        | Options                        |
+| ------------------ | ----------  | ------------------------------ |
+| item               | references  | null: false  foreign_key:true  |
+| user               | references  | null: false  foreign_key:true  |
+| zip_code           | string      | null: false                    |
+| prefecture         | string      | null: false                    |
+| city               | string      | null: false                    |
+| street_number      | string      | null: false                    |
+| name_of_building   | string      | null: false                    |
+| telephone_number   | string      | null: false                    |
+
 
 ### Association
-belongs_to :user
+- belongs_to :user
