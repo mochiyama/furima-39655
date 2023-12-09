@@ -1,7 +1,7 @@
 # README
 
 ## users
-| colum              | Type        | Options                         |
+| column             | Type        | Options                         |
 | ------------------ | ----------  | --------------------------------|
 | nickname           | string      | null: false                     |
 | encrypted_password | string      | null: false                     |
@@ -10,7 +10,7 @@
 | last_name_kanji    | string      | null: false                     |
 | first_name_kana    | string      | null: false                     |
 | last_name_kana     | string      | null: false                     |
-| birth_day          | datetime    | null: false                     |
+| birth_day          | date        | null: false                     |
 
 ### Association
 - has_many :items
@@ -42,7 +42,7 @@
 | user               | references  | null: false, foreign_key:true   |
 
 ### Association
-- belongs_user
+- belongs_to :user
 - has_one :sending_info
 
 
@@ -59,4 +59,4 @@
 
 
 ### Association
-- has_one :purchasing_info
+- belongs_to :purchasing_info
