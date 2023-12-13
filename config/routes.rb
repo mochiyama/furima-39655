@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "items#index"
-  #resources :
+  resources :users, only: :show
   
   #devise_for :users
   #root to: "prototypes#index"
