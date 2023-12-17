@@ -5,16 +5,21 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nickname,             presence: true
-  validates :email,   	           presence: true
-  validates :password, 	           presence: true
+  
+
   validates :last_name_kanji,      presence: true
   validates :first_name_kanji,     presence: true
   validates :last_name_kana,       presence: true
   validates :first_name_kana,      presence: true
   validates :birth_day,            presence: true
-       
-  has_many :items
-  has_many :purchasing_infos
-
+  validates :password,             format: { with: /\A[a-zA-Z0-9]+\z/, message: "must be in half-width alphanumeric characters" }
+  validates :last_name_kanji,      format: { with: /\A[\p{Han}]+\z/, message: "must be in full-width kanji" }
+  validates :first_name_kanji,     format: { with: /\A[\p{Han}]+\z/, message: "must be in full-width kanji" }
+  validates :last_name_kana,       format: { with: /\A[ァ-ヶー－]+\z/, message: "must be in full-width katakana" }
+  validates :first_name_kana,      format: { with: /\A[ァ-ヶー－]+\z/, message: "must be in full-width katakana" }
+ 
+  #一時的に保留する 12月16日 20:30
+  #has_many :items
+  #has_many :purchasing_infos
    
 end
