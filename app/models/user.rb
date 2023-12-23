@@ -17,10 +17,12 @@ class User < ApplicationRecord
   end
 
   validates :birth_day,            presence: true
-  validates :password,             format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: "must be in half-width alphanumeric characters" }
+  
  
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
+
+  
 
 
   #一時的に保留する 12月16日 20:30
