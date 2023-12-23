@@ -7,14 +7,21 @@ class User < ApplicationRecord
   validates :nickname,             presence: true
   
   
-  validates :last_name_kanji,      presence: true, format: { with: /\A[\p{Han}\p{Hiragana--}]+\z/, message: "must be in full-width kanji" }
-  validates :first_name_kanji,     presence: true, format: { with: /\A[\p{Han}\p{Hiragana--}]+\z/, message: "must be in full-width kanji" }
-  validates :last_name_kana,       presence: true, format: { without: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'must be in full-width Katakana'}
-  validates :first_name_kana,      presence: true, format: { without: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'must be in full-width katakana'}
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: '全角文字を使用してください' } do
+    validates :first_name_kanji
+    validates :last_name_kanji
+  end
+  with_options presence: true, format: { with: /\A[ァ-ヶー－]+\z/, message: 'カタカナを使用してください' } do
+    validates :first_name_kana
+    validates :last_name_kana
+  end
+
   validates :birth_day,            presence: true
-  validates :password,             format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: "must be in half-width alphanumeric characters" }, length: { minimum: 6 }
-  validates :email,                uniqueness: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: "@ must include in email address" }
-    
+  validates :password,             format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: "must be in half-width alphanumeric characters" }
+ 
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
+
 
   #一時的に保留する 12月16日 20:30
   #has_many :items
