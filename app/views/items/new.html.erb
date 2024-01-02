@@ -25,7 +25,7 @@
         <%= f.file_field :image, id:"item-image" %>
       </div>
 <%# ↓12/30追記 %>
-      <%#= image_tag message.image, class: 'item-image' if item.image.attached? %>
+      <%#= image_tag item.image, class: 'item-image' if item.image.attached? %>
 <%# ↑12/30追記 %>
     </div>
     <%# /商品画像 %>
@@ -142,7 +142,7 @@
     <%# /注意書き %>
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
-      <%= f.submit "出品する" ,class:"sell-btn" %>
+      <%= f.submit "出品する" , class:"sell-btn" %>
       <%=link_to 'もどる', root_path, class:"back-btn" %>
     </div>
     <%# /下部ボタン %>

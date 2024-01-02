@@ -13,8 +13,8 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      #redirect_to root_path #12/30コメントアウト
-      redirect_to @item, notice: 'アイテムを作成しました。' #12/30 chatGPTアドバイスにより追加
+      redirect_to root_path #12/31コメントアウトから復活
+      #redirect_to @item, notice: 'アイテムを作成しました。' #12/30 chatGPTアドバイスにより追加 #12/31 コメントアウト
     else
       #puts @item.errors.full_messages # ターミナルにエラーメッセージを表示 12/30 chatGPTアドバイスにより追加
       render :new, status: :unprocessable_entity
