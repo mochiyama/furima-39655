@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  #pending "add some examples to (or delete) #{__FILE__}"
   before do
     @item = FactoryBot.build(:item)
   end
@@ -15,6 +15,13 @@ RSpec.describe Item, type: :model do
   end
   
   context  '商品登録ができない時' do
+
+    it 'imageが空では登録できない' do
+      @item.image = nil 
+      @item.valid?
+      expect(@item.errors.full_messages).to include"Image can't be blank"
+    end
+
     it '商品名が空では登録できない' do
       @item.item_name = '' 
       @item.valid?
@@ -66,7 +73,7 @@ RSpec.describe Item, type: :model do
     it 'Priceは半角数字以外では登録できない' do
       @item.price= '１２３４'
       @item.valid?
-      expect(@item.errors.full_messages).to include "Price は半角数字を使用してください"
+      expect(@item.errors.full_messages).to include "Price must be greater than or equal to 300"
       end
 
 ##以上、user_spec.rbからコピーを改修した
