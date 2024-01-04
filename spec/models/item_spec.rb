@@ -88,6 +88,12 @@ RSpec.describe Item, type: :model do
        expect(@item.errors.full_messages).to include "Price must be greater than 299 or less than 10000000"
     end
 
+    it 'userが紐づいていなければ出品できない' do
+      @item.user= nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include "User must exist"
+   end
+
 ##以上、user_spec.rbからコピーを改修した
 
  end
