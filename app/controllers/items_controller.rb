@@ -1,11 +1,11 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index] #, :show]
 
-  #@items = Item.all.order(created_at: :desc)
+
 
   def index
     @items = Item.all.order(created_at: :desc)
-    #@items = Item.all # インスタンス「@items」を生成をコメントアウト 1/5
+
  
   end
 
@@ -16,10 +16,10 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to root_path #12/31コメントアウトから復活
-      #redirect_to @item, notice: 'アイテムを作成しました。' #12/30 chatGPTアドバイスにより追加 #12/31 コメントアウト
+      redirect_to root_path
+
     else
-      #puts @item.errors.full_messages # ターミナルにエラーメッセージを表示 12/30 chatGPTアドバイスにより追加
+ 
       render :new, status: :unprocessable_entity
     end
   end
