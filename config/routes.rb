@@ -6,6 +6,4 @@ Rails.application.routes.draw do
    end
   resources :users, only: :show
 
-#[index]入れる？
-
 end
