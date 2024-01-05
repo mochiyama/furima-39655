@@ -127,10 +127,10 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-    <% @items = Item.all.order(created_at: :desc) %>
+    <% Item.all.order(created_at: :desc) %>
 
 <% if@items.present? %>
-      <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
+ 
   <% @items.each do |item| %>
       <li class='list'>
         <%= link_to "#" do %>
@@ -138,7 +138,6 @@
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
 
-          <%# 商品が売れていればsold outを表示しましょう %>
 
        <%# if @items.item.present? %> <%#購入機能を実装時にコメントアウト解除する>
           <div class='sold-out'>
@@ -163,13 +162,12 @@
   <% end %>
         <% end %>
       </li>
-      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
+   
 
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
+   
 
    <%# if @items.present? %>
-      <%# 表示されないようにするコードを記述する %>
+ 
  <% else %>
 
       <li class='list'>
@@ -191,8 +189,7 @@
  <% end %>
 
       </li>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
+
     </ul>
   </div>
   <%# /商品一覧 %>

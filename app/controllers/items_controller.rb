@@ -1,11 +1,12 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index] #, :show]
 
-  @items = Item.all.order(created_at: :desc)
+  #@items = Item.all.order(created_at: :desc)
 
   def index
-     @items = Item.all # インスタンス「@items」を生成
-  #  @items = Item.includes(:user)
+    @items = Item.all.order(created_at: :desc)
+    #@items = Item.all # インスタンス「@items」を生成をコメントアウト 1/5
+ 
   end
 
   def new
