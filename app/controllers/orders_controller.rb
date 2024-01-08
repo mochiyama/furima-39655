@@ -1,22 +1,32 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :non_purchased_item, only: [:index, :create]
+
   def index
       @item = Item.find(params[:item_id])
-      @orderform = OrderForm.new
+      @order_form = OrderForm.new
   end
 
 def create
-     @orderform = OrderForm.new(order_params)
-     if @orderform.valid?
-               @orderform.save(params,current_user.id)
-               redirect_to root_path
+     @order_form = OrderForm.new(order_params)
+
+     if @order_form.valid?
+        # purchased_item
+        @order_form.save
+        redirect_to root_path
      else
-              @item = Item.find(params)[:item_id]
-              render :index
+        render :index, status: :unprocessable_entity
      end
 end
 
 private
     def order_params
-       params.require(:order_form).permit(:zip_code, :prefecture_id, :city, :street_number, :name_of_building, :telephone_number) .merge(item_id: params[:item_id], user_id: current_user.id) 
+       params.require(:order_form).permit(:zip_code, :ship_from_id, :city, :street_number, :name_of_building, :telephone_number) .merge(item_id: params[:item_id], user_id: current_user.id) 
     end
+
+    def non_purchased_item
+      @item = Item.find(params[:item_id])
+      redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
+    end
+
 end
