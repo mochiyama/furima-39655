@@ -58,7 +58,13 @@
           <span class="indispensable">必須</span>
         </div>
         <div class='input-expiration-date-wrap'>
-          <div id="expiry-form" class="input-default"></div>
+
+
+          <%= f.text_area 'exp_month', class:"input-expiration-date", id:"card-exp-month", placeholder:"例)3", maxlength:"2" %>
+          <p>月 20</p>
+          <%= f.text_area 'exp_year', class:"input-expiration-date", id:"card-exp-year", placeholder:"例)24", maxlength:"2" %>
+          <p>年</p>
+
         </div>
       </div>
       <div class="form-group">
@@ -66,7 +72,9 @@
           <label class="form-text">セキュリティコード</label>
           <span class="indispensable">必須</span>
         </div>
-        <div id="cvc-form" class="input-default"></div>
+
+     <%= f.text_field "cvc",class:"input-default", id:"card-cvc", placeholder:"CVC", maxlength:"4" %>
+
       </div>
     </div>
     <%# /カード情報の入力 %>
