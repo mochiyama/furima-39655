@@ -10,4 +10,3 @@
      addPofitDom.innerHTML = Math.floor(priceInput.value - Math.round(priceInput.value * 0.1 ))
  })
 });
-
