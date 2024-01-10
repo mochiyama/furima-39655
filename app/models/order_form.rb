@@ -10,7 +10,7 @@ class OrderForm
     validates :city
     validates :street_number
     validates :telephone_number, format: { with: /\A\d{10,11}\z/,message: "is invalid. Include hyphen(-)"}
-    #validates :token
+    validates :token
   end
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
