@@ -24,6 +24,7 @@ private
        params.require(:order_form).permit(:zip_code, :ship_from_id, :city, :street_number, :name_of_building, :telephone_number) .merge(item_id: params[:item_id], user_id: current_user.id ,token: params[:token]) 
     end
 
+ 
     def purchased_item
       Payjp.api_key = ENV['PAYJP_SECRET_KEY']
       Payjp::Charge.create(
