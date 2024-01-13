@@ -1,5 +1,7 @@
 const pay = () => {
-  const payjp = Payjp('')
+
+  const publicKey = gon.public_key //1/13 20:00追記
+  const payjp = Payjp(publickey) //PAY.JPテスト公開鍵
 
   //このメソッドを使用することで、入力フォームを作成できる。この時、生成されたフォームはelementという種類のインスタンスになる
   const elements = payjp.elements();
@@ -36,3 +38,4 @@ const pay = () => {
 };
 
 window.addEventListener("turbo:load", pay);
+window.addEventListener("turbo:render", pay); //1/13 20:00追記
