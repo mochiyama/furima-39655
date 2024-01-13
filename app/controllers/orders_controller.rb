@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :non_purchased_item, only: [:index, :create]
 
   def index
-      @item = Item.find(params[:item_id])
+
       @order_form = OrderForm.new
   end
 
@@ -26,9 +26,9 @@ private
 
  
     def purchased_item
-      Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+      Payjp.api_key = ""
       Payjp::Charge.create(
-        amount: @item.price,        
+        amount: @item.price, 
         card: order_params[:token], 
         currency: 'jpy'      
       )

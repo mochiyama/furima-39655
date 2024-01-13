@@ -1,5 +1,5 @@
 const pay = () => {
-  const payjp = Payjp('pk_test_8192cbaff5538a843c45cced')
+  const payjp = Payjp('')
 
   //このメソッドを使用することで、入力フォームを作成できる。この時、生成されたフォームはelementという種類のインスタンスになる
   const elements = payjp.elements();
@@ -24,8 +24,11 @@ const pay = () => {
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} name='token' type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
-
       }
+      numberElement.clear();
+      expiryElement.clear();
+      cvcElement.clear();
+      document.getElementById("charge-form").submit();
     });
 
     e.preventDefault();    
