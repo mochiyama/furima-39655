@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
     belongs_to :user
+    has_one    :order
     
   extend ActiveHash::Associations::ActiveRecordExtensions
     belongs_to :category
@@ -8,7 +9,7 @@ class Item < ApplicationRecord
     belongs_to :ship_from
     belongs_to :shipping_date
 
-  #has_one :purchasing_info
+  
   has_one_attached :image
   
   validates :image,              presence: true 
@@ -25,8 +26,7 @@ class Item < ApplicationRecord
 
            
   validates :price,               presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "must be greater than 299 or less than 10000000"}, format: { with: /\A[0-9]+\z/, message: "must be half-width" }
-  #validates :price,               format: { with: /\A[0-9]+\z/ }
-
+  
 
 
 end
