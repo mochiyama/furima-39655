@@ -58,12 +58,12 @@ RSpec.describe OrderForm, type: :model do
       it '郵便番号が空だと保存できないこと' do
         @order_form.zip_code = nil
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Zip code is invalid, can't be blank")
+        expect(@order_form.errors.full_messages).to include("Zip code is invalid, can't be blank. Zip code is invalid, Include hyphen(-)")
       end
       it '郵便番号にハイフンがないと保存できないこと' do
         @order_form.zip_code = 1_234_567
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Zip code is invalid, Include hyphen(-)")
+        expect(@order_form.errors.full_messages).to include("Zip code is invalid, can't be blank. Zip code is invalid, Include hyphen(-)")
       end
       it '都道府県が「---」だと保存できないこと' do
         @order_form.ship_from_id = 0
