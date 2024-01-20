@@ -18,14 +18,14 @@ class Item < ApplicationRecord
   validates :description,        presence: true
 
 
-  validates :category_id,         numericality: { other_than: 1, message: "can't be blank"}
-  validates :condition_id,        numericality: { other_than: 1, message: "can't be blank"}
-  validates :shipping_fee_id,     numericality: { other_than: 1, message: "can't be blank"}
-  validates :ship_from_id,        numericality: { other_than: 1, message: "can't be blank"}
-  validates :shipping_date_id,    numericality: { other_than: 1, message: "can't be blank"}
+  validates :category_id,         numericality: { other_than: 1, message: "は選択されていません"}
+  validates :condition_id,        numericality: { other_than: 1, message: "は選択されていません"}
+  validates :shipping_fee_id,     numericality: { other_than: 1, message: "は選択されていません"}
+  validates :ship_from_id,        numericality: { other_than: 1, message: "は選択されていません"}
+  validates :shipping_date_id,    numericality: { other_than: 1, message: "は選択されていません"}
 
            
-  validates :price,               presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "must be greater than 299 or less than 10000000"}, format: { with: /\A[0-9]+\z/, message: "must be half-width" }
+  validates :price,               presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "300円以上 もしくは 9,999,999円以下で出品してください"}, format: { with: /\A[0-9]+\z/, message: "半角で入力してください" }
   
 
 
